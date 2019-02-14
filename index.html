@@ -1,0 +1,731 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/solid.css" integrity="sha384-wnAC7ln+XN0UKdcPvJvtqIH3jOjs9pnKnq9qX68ImXvOGz2JuFoEiCjT8jyZQX2z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css" integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6" crossorigin="anonymous">
+	<style type="text/css">
+		html {
+			font-size: 18px;
+		}
+
+		th {
+			background-color: #f6f3ed;
+		}
+
+		.table-score .fas {
+			display: block;
+		}
+
+		.text-bold {
+			font-weight: bold;
+		}
+
+		.jumbotron {
+			padding: 1rem 2rem;
+			margin-bottom: 1rem;
+		}
+
+		.tada {
+			animation: tada 2s linear infinite;
+		}
+
+		@keyframes tada {
+		  0% {
+		    -webkit-transform: scale(1);
+		    transform: scale(1);
+		  }
+
+		  10%, 20% {
+		    -webkit-transform: scale(.9) rotate(-8deg);
+		    transform: scale(.9) rotate(-8deg);
+		  }
+
+		  30%, 50%, 70% {
+		    -webkit-transform: scale(1.3) rotate(8deg);
+		    transform: scale(1.3) rotate(8deg);
+		  }
+
+		  40%, 60% {
+		    -webkit-transform: scale(1.3) rotate(-8deg);
+		    transform: scale(1.3) rotate(-8deg);
+		  }
+
+		  80%, 100% {
+		    -webkit-transform: scale(1) rotate(0);
+		    transform: scale(1) rotate(0);
+		  }
+		}
+
+		.wordart {
+			animation: blinker 2s linear infinite;
+			text-align: center;
+			font-family: Arial, sans-serif;
+			font-size: 4em;
+			font-weight: bold;
+			position: relative;
+			z-index: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		@keyframes blinker {
+		  50% {
+		    opacity: 0;
+		  }
+		}
+
+		.wordart.blues .text {
+		    font-family: Impact, sans-serif;
+		    color: #24c0fd;
+		    -webkit-text-stroke: 0.01em #0000aa;
+		    filter: progid:DXImageTransform.Microsoft.Glow(Color=#0000aa,Strength=1);
+		    text-shadow: 0.13em -0.13em 0px #0000aa;
+		    letter-spacing: -0.05em;
+		}
+
+		[v-cloak] > * { display:none; }
+		[v-cloak]::before { 
+		  content: " ";
+		  display: block;
+		  width: 16px;
+		  height: 16px;
+		  background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
+		}
+
+		.card {
+			min-height: 20rem;
+			box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+			border-radius: 0;
+		}
+
+		.card-body {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.competition-podium {
+		    height: 250px;
+		    position: relative;
+		    width: 350px;
+		    display: inline-block;
+		    background:#f6f3ed;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+
+		.competition-podium .podium-block {
+		    width: 110px;
+		    text-align: left;
+		    display: inline-block;
+		    position: absolute;
+		    bottom: 0;
+		}
+		.competition-podium .podium-block .place {
+		    font-weight: bold;
+		}
+		.competition-podium .podium-block .sum {
+		    font-weight: bold;
+		    line-height: 5rem;
+		}
+
+		.competition-podium .podium-block.bronze {
+		    color: #e6d6bf;
+		    left: 10px;
+		}
+		.competition-podium .podium-block.bronze .podium {
+		    background: #e6d6bf;
+		    height: 0px;
+		}
+		.competition-podium .podium-block .name {
+		    text-align: center
+		}
+		.competition-podium .podium-block.bronze .name {
+		    color: #856e4e;
+		}
+
+		.competition-podium .podium-block.gold {
+		    color: #E87E04;
+		    left: 120px;
+		}
+		.competition-podium .podium-block.gold .podium {
+		    background: #ead679;
+		    height: 0px;
+		}
+		.competition-podium .podium-block.gold .name {
+		    color: #856e4e;
+		    text-align:center
+		}
+
+		.competition-podium .podium-block.silver {
+		    color: #cbd9de;
+		    left: 230px;
+		}
+		.competition-podium .podium-block.silver .podium {
+		    background: #cbd9de;
+		    height: 0px;
+		}
+		.competition-podium .podium-block.silver .name {
+		    color: #856e4e;
+		  text-align:center
+		}
+		.podium {
+		    display: table;
+		    width: 100%;
+		    border-top-left-radius: 4px;
+		    border-top-right-radius: 4px;
+		}
+		.podium > * {
+		    display: table-cell;
+		    vertical-align: middle;
+		    text-align: center;
+		    color: #4D4D4D;
+		    font-size: 1.5em;
+		}
+	</style>
+
+    <title>Belote</title>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+	  	<div class="jumbotron">
+			<h1 class="display-4"><i class="fas fa-award" v-bind:class="{tada: tournament.finished === true}"></i> Tournoi international de Belote !</h1>
+			<hr />
+			<p class="lead">Organisé par <span @click="finishTournament">Guy</span> et Mel</p>
+		</div>
+
+		<div class="container-fluid">
+	    	<div v-if="tournament.started">
+	    		<div class="row">
+	    			<div class="col-sm-4">
+	    				<h2>Classement</h2>
+	    				<div class="table-responsive">
+			    			<table class="table table-bordered table-striped">
+			    				<thead>
+			    					<tr>
+			    						<th>Équipe</th>
+			    						<th>Parties gagnées</th>
+			    						<th>Score total</th>
+			    						<th>Score moyen</th>
+			    					</tr>
+		    					</thead>
+		    					<tbody>
+		    						<tr v-for="stats in tournament.classement">
+		    							<td>{{ getTeamMemberNames(tournament.teams[stats.team]) }}</td>
+		    							<td><strong>{{ stats.winGames }}</strong>/{{ stats.playedGames }} 
+		    								({{ (stats.playedGames > 0 ? Math.floor(100 * stats.winGames / stats.playedGames) : '0')}} %)
+		    							</td>
+		    							<td>{{ stats.totalScore }}</td>
+		    							<td>{{ stats.playedGames > 0 ? Math.floor(stats.totalScore / stats.playedGames) : '-' }}</td>
+		    						</tr>
+		    					</tbody>
+			    			</table>
+	    				</div>
+	    			</div>
+	    			<div class="col-sm-8">
+				    	<div v-if="tournament.finished">
+				    		<div class="wordart blues"><span class="text">Palmarès</span></div>
+							<div class="competition-podium">
+							  	<div class="podium-block bronze" v-if="undefined !== tournament.classement[2]">	
+									<div class="name">{{ getTeamMemberNames(tournament.teams[tournament.classement[2].team]) }}</div>
+							      	<div class="podium"><span>3<sup>ème</sup></span></div>
+							    </div>
+							    <div class="podium-block gold"v-if="undefined !== tournament.classement[0]">	
+									<div class="name">{{ getTeamMemberNames(tournament.teams[tournament.classement[0].team]) }}</div>
+						      		<div class="podium"><span>1<sup>er</sup></span></div>
+							    </div>
+							    <div class="podium-block silver"v-if="undefined !== tournament.classement[1]">	
+									<div class="name">{{ getTeamMemberNames(tournament.teams[tournament.classement[1].team]) }}</div>
+						      		<div class="podium"><span>2<sup>ème</sup></span></div>
+							    </div>
+							</div>
+						</div>
+						<div v-if="tournament.finished === false">
+		    				<h2>Matchs en cours</h2>		
+		    				<div class="row" v-if="tournament.matchQueue.length > 0">
+		    					<div :class="'col-sm-' + (12 / tournament.matchQueue.length <= 6 ? 12 / tournament.matchQueue.length : 6) + ' ' + (12 / tournament.matchQueue.length > 6 ? 'offset-sm-3' : '')" v-for="(match, index) in tournament.matchQueue">
+		    						<div class="card text-center">
+		    							<div class="card-body">
+		    								<h3 class="card-title text-muted">{{ getTeamMemberNames(tournament.teams[match.team1]) }}</h3>
+		    								<p class="display-4">VS</p>
+		    								<h3 class="card-title text-muted">{{ getTeamMemberNames(tournament.teams[match.team2]) }}</h3>
+		    							</div>
+		    							<div class="card-footer">
+		    								<form v-on:submit.prevent="finishMatch(index)">
+			    								<div class="input-group">
+													<div class="input-group-prepend">
+														<span class="input-group-text">Résultat</span>
+													</div>
+													<input type="number" class="form-control" v-model.number="match.score1" placeholder="Score 1">
+													<input type="number" class="form-control" v-model.number="match.score2" placeholder="Score 2">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="submit" v-bind:disabled="!match.score1 || !match.score2">Valider</button>
+													</div>
+												</div>
+											</form>
+		    							</div>
+		    						</div>    						
+		    					</div>
+		    				</div>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div>
+    				<h2>Matchs</h2>
+					<div class="table-responsive">
+	    				<table class="table table-score table-sm table-bordered text-center">
+	    					<tbody>
+	    						<tr>
+	    							<th>Equipe A</th>
+	    							<td v-for="match in tournament.matchs" v-bind:class="{ 'text-bold': match.winner === match.team1 }">
+	    								{{ getTeamMemberNames(tournament.teams[match.team1]) }}
+	    								<i class="fas fa-trophy" v-if="match.winner === match.team1"></i>
+	    							</td>
+	    						</tr>
+	    						<tr>
+	    							<th>Equipe B</th>
+	    							<td v-for="match in tournament.matchs" v-bind:class="{ 'text-bold': match.winner === match.team2 }">
+	    								{{ getTeamMemberNames(tournament.teams[match.team2]) }}	
+	    								<i class="fas fa-trophy" v-if="match.winner === match.team2"></i>
+	    							</td>
+	    						</tr>
+	    						<tr>
+	    							<th>Score</th>
+	    							<td v-for="match in tournament.matchs">{{ match.score1 }} - {{ match.score2 }}</td>
+								</tr>
+	    					</tbody>
+		    			</table>
+					</div>
+				</div>
+	    		<div v-if="tournament.finished">
+	    			<btn-icon v-on:click="finishTournament" icon="minus-circle" btnclass="danger btn-block btn-lg" text="Allez cassez-vous"></btn-icon>
+	    			<br />
+	    		</div>
+	    	</div>
+	    	<div v-if="! tournament.started">
+	    		<div class="row">
+		    		<div class="col-sm-6">
+		    			<h2>Participants 
+		    				<btn-icon icon="plus" btnclass="success" v-on:click="addMemberModal"></btn-icon>
+		    				<btn-icon icon="trash-alt" btnclass="danger" v-on:click="tournament.members = {}" v-bind:disabled="Object.keys(tournament.members).length === 0"></btn-icon>
+		    			</h2>
+		    			<table class="table table-bordered table-striped" v-if="Object.keys(tournament.members).length">
+		    				<thead>
+		    					<tr>
+		    						<th>Nom</th>
+		    						<th>Actions</th>
+		    					</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr v-for="(member, id) in tournament.members">
+	    							<td>{{ member.name }}</td>
+	    							<td>
+	    								<btn-icon icon="pen" v-on:click="editMemberModal(member)"></btn-icon>
+	    								<btn-icon icon="trash-alt" btnclass="danger" v-on:click="deleteMember(id)"></btn-icon>
+	    							</td>
+	    						</tr>
+	    					</tbody>
+		    			</table>
+		    		</div>
+		    		<div class="col-sm-6">
+		    			<h2>Équipes
+		    				<btn-icon icon="sync" btnclass="success" v-on:click="generateTeams" v-bind:disabled="Object.keys(tournament.members).length < 4"></btn-icon>
+		    				<btn-icon icon="trash-alt" btnclass="danger" v-on:click="tournament.teams = {}" v-bind:disabled="Object.keys(tournament.teams).length === 0"></btn-icon>
+	    				</h2>
+		    			<table class="table table-bordered table-striped" v-if="Object.keys(tournament.teams).length">
+		    				<thead>
+		    					<tr>
+		    						<th>Nom</th>
+		    						<th>Membres</th>
+		    					</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr v-for="(team, id) in tournament.teams">
+	    							<td>{{ team.name }}</td>
+	    							<td>{{ getTeamMemberNames(team) }}</td>
+	    						</tr>
+	    					</tbody>
+		    			</table>
+		    			<btn-icon icon="bolt" text="Let's go les motherfuckers !" btnclass="primary btn-block btn-lg" v-on:click="startTournament" v-if="Object.keys(tournament.teams).length >= 2"></btn-icon>
+		    		</div>
+		    	</div>
+	    	</div>
+    	</div>
+	    
+	    <!-- Modal -->
+		<div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<form v-on:submit.prevent="addMember">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Nouveau participant</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <input type="text" placeholder="Nom..." v-model="newMemberName" class="form-control">
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			        <button type="submit" class="btn btn-primary" v-bind:disabled="newMemberName === ''">Enregistrer</button>
+			      </div>
+			    </div>
+			  </div>
+		  	</form>
+		</div>
+
+		<div class="modal fade" id="editMemberModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<form v-on:submit.prevent="editMember">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Participant</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <input type="text" placeholder="Nom..." v-model="form.member.name" class="form-control">
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			        <button type="submit" class="btn btn-primary" v-bind:disabled="form.member.name === ''">Enregistrer</button>
+			      </div>
+			    </div>
+			  </div>
+		  	</form>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+    	function shuffle(a) {
+		    for (let i = a.length - 1; i > 0; i--) {
+		        const j = Math.floor(Math.random() * (i + 1));
+		        [a[i], a[j]] = [a[j], a[i]];
+		    }
+
+		    return a;
+		}
+
+		Array.prototype.chunk = function(chunk_size){
+		    var index = 0;
+		    var arrayLength = this.length;
+		    var tempArray = [];
+		    
+		    for (index = 0; index < arrayLength; index += chunk_size) {
+		        myChunk = this.slice(index, index+chunk_size);
+		        tempArray.push(myChunk);
+		    }
+
+		    return tempArray;
+		}
+
+    	let tournament = JSON.parse(localStorage.getItem('tournament') || "{}");
+    	console.log(tournament);
+
+    	tournament = Object.assign({
+    		started: false,
+    		finished: false,
+    		members: {},
+    		teams: {},
+    		matchs: [],
+    		teamQueue: [],
+    		matchQueue: [],
+    	}, tournament);
+
+		Vue.component('btn-icon', {
+		  props: {
+		  	btnclass: {type: String, default: 'primary'},
+		  	icon: String,
+		  	type: {type: String, default: 'button'},
+		  	text: {type: String, default: ''}
+		  },
+		  template: `
+		  	<button :type="type" :class="'btn btn-' + btnclass" v-on:click="$emit('click')">
+		  		<i :class="'fas fa-' + icon"></i>
+		  		{{ text }}
+	  		</button>
+		  `
+		});
+
+		let vm = new Vue({
+			el: '#app',
+			data: {
+		    	tournament: tournament,
+		    	newMemberName: '',
+		    	form: {
+		    		member: {}
+		    	}
+		  	},
+		  	mounted: function() {
+		  		this.checkEnd();
+		  	},
+		  	methods: {
+		  		finishTournament: function() {
+		  			if(! confirm('Remettre à zéro le tournoi ?')) {
+		  				return;
+		  			}
+
+		  			this.tournament.finished = false;
+		  			this.tournament.started = false;
+		  			this.tournament.matchs = [];
+		  			this.tournament.teamQueue = [];
+		  			this.tournament.matchQueue = [];
+		  			this.tournament.classement = [];
+		  		},
+		  		updateClassement: function() {
+		  			let classement = [];
+		  			this.tournament.teams.forEach((team, teamId) => {
+		  				let teamStats = {
+		  					team: teamId,
+		  					winGames: 0,
+		  					playedGames: 0,
+		  					totalScore: 0,
+		  					_internalScore: 0
+		  				};
+
+		  				this.tournament.matchs.forEach(match => {
+		  					if(true === match.finished && (match.team1 === teamId || match.team2 === teamId)) {
+		  						const score = match.team1 === teamId ? match.score1 : match.score2;
+		  						teamStats.playedGames++;
+		  						teamStats.totalScore += score;
+		  						teamStats._internalScore += score;
+		  						if(match.winner === teamId) {
+		  							teamStats.winGames++;
+		  							teamStats._internalScore += 100000;
+		  						}
+		  					}
+		  				});
+
+		  				classement.push(teamStats);
+		  			});
+
+		  			classement.sort(function(stats1, stats2) {
+		  				return stats2._internalScore - stats1._internalScore;
+		  			});
+
+		  			this.tournament.classement = classement;
+		  		},
+		  		checkEnd: function() {
+		  			if(this.tournament.started === false) {
+		  				return;
+		  			}
+
+		  			let isEnd = true;
+		  			this.tournament.matchs.forEach(match => {
+		  				if(match.finished === false) {
+		  					isEnd = false;
+		  					return false;
+		  				}
+		  			});
+
+		  			if(! isEnd) {
+		  				return;
+		  			}
+
+		  			this.tournament.finished = true;
+
+		  			Vue.nextTick().then(function () {
+			  			$('.bronze .podium').animate({
+				            "height": "62px"
+				        }, 1500);
+				        $('.gold .podium').animate({
+				            "height": "165px"
+				        }, 1500);
+				        $('.silver .podium').animate({
+				            "height": "106px"
+				        }, 1500);
+				        $('.competition-container .name').delay(1000).animate({
+				            "opacity": "1"
+				        }, 500);
+					});
+		  		},
+		  		finishMatch: function(matchIndex) {
+		  			const currentMatch = this.tournament.matchQueue[matchIndex];
+
+		  			this.tournament.matchs.forEach((match, index) => {
+		  				if( (match.team1 === currentMatch.team1 || match.team2 === currentMatch.team1)
+		  					&& (match.team1 === currentMatch.team2 || match.team2 === currentMatch.team2)
+	  					) {
+		  					match.score1 = match.team1 === currentMatch.team1 ? currentMatch.score1 : currentMatch.score2;
+		  					match.score2 = match.team2 === currentMatch.team2 ? currentMatch.score2 : currentMatch.score1;
+		  					match.winner = match.score1 > match.score2 ? match.team1 : match.team2;
+		  					match.finished = true;
+
+							this.tournament.matchs[index] = match;
+							this.tournament.matchQueue.splice(matchIndex, 1);
+							this.tournament.teamQueue.splice(this.tournament.teamQueue.indexOf(match.team1), 1);
+							this.tournament.teamQueue.splice(this.tournament.teamQueue.indexOf(match.team2), 1);
+							this.addTeamQueue([match.team1, match.team2]);
+							this.guessNewMatch();
+							this.updateClassement();
+							this.checkEnd();
+
+		  					return false;
+	  					}
+		  			});
+		  		},
+		  		startTournament: function() {
+		  			this.tournament.matchQueue = [];
+		  			this.tournament.teamQueue = [];
+		  			
+		  			let matchs = [];
+		  			for(let i = 0; i < this.tournament.teams.length - 1; i++) {
+		  				for(let j = i + 1; j < this.tournament.teams.length; j++) {
+		  					matchs.push({
+	  							team1: i,
+	  							team2: j,
+	  							winner: null,
+	  							score1: 0,
+	  							score2: 0,
+	  							finished: false	  							
+	  						});
+		  				}
+		  			}
+
+		  			this.addTeamQueue(Object.keys(this.tournament.teams).map(Number));
+		  			tournament.matchs = shuffle(matchs);
+
+		  			const nbParallelMatchs = Math.floor(this.tournament.teams.length / 2);
+		  			for(i = 0; i < nbParallelMatchs; i++) {
+		  				this.guessNewMatch();
+		  			}
+		  			
+		  			this.tournament.started = true;
+		  			this.updateClassement();
+		  		},
+		  		addTeamQueue: function(teamIds) {
+		  			this.tournament.teamQueue = this.tournament.teamQueue.concat(shuffle(teamIds));
+		  		},
+		  		guessNewMatch: function() {
+		  			let team1;
+		  			let team2;
+		  			
+		  			for(let i = 0; i < this.tournament.teamQueue.length - 1; i++) {
+		  				for(let j = i + 1; j < this.tournament.teamQueue.length; j++) {
+		  					team1 = this.tournament.teamQueue[i];
+		  					team2 = this.tournament.teamQueue[j];
+
+		  					if(this.canTeamsPlay(team1, team2)) {
+		  						this.tournament.matchQueue.push({
+		  							team1: team1,
+		  							team2: team2,
+		  							score1: null,
+		  							score2: null
+		  						});
+		  					}
+		  				}
+		  			}		  			
+		  		},
+		  		canTeamsPlay: function(team1, team2) {
+		  			return ! this.isBusyTeam(team1)
+		  				&& ! this.isBusyTeam(team2)
+		  				&& ! this.hasTeamAlreadyPlayed(team1, team2);
+		  		},
+		  		hasTeamAlreadyPlayed: function(team1, team2) {
+		  			let hasTeamAlreadyPlayed = false;
+		  			this.tournament.matchs.forEach(match => {
+		  				if(match.finished === true 
+		  					&& (match.team1 === team1 || match.team2 === team1)
+		  					&& (match.team1 === team2 || match.team2 === team2)
+	  					) {
+		  					hasTeamAlreadyPlayed = true;
+		  					return false; //Stop foreach
+	  					}
+		  			});
+
+		  			return hasTeamAlreadyPlayed;
+		  		},
+		  		isBusyTeam: function(teamId) {
+		  			let isBusy = false;
+		  			this.tournament.matchQueue.forEach(match => {
+		  				isBusy = isBusy || match.team1 === teamId || match.team2 === teamId;
+		  			});
+
+		  			return isBusy;
+		  		},
+		  		getTeamMemberNames: function(team) {
+		  			let names = [];
+		  			team.members.forEach(member => names.push(member.name));
+
+		  			return names.join(' & ');
+		  		},
+		  		generateTeams: function() {
+		  			let teams = [];
+		  			let memberIds = shuffle(Object.keys(this.tournament.members).map(Number)).chunk(2);
+		  			
+		  			memberIds.forEach((teamMemberIds, teamNumber) => {
+		  				let members = [];
+		  				teamMemberIds.forEach(teamMemberId => members.push(this.tournament.members[teamMemberId]));
+		  				teams.push({
+		  					name: 'Équipe ' + (teamNumber + 1),
+		  					members: members
+		  				});
+		  			});
+
+		  			tournament.teams = teams;
+		  		},
+		  		deleteMember: function(id) {
+		  			Vue.delete(this.tournament.members, id);
+		  		},
+		  		editMemberModal: function(member) {
+		  			this.form.member = JSON.parse(JSON.stringify(member));
+		  			$('#editMemberModal').modal('show');
+		  		},
+		  		editMember: function() {
+		  			this.tournament.members[this.form.member.id].name = this.getPseudo(this.form.member.name);
+		  			$('#editMemberModal').modal('hide');
+		  		},
+		  		addMemberModal: function() {
+		  			$('#addMemberModal').modal('show');
+		  		},
+		  		addMember: function() {
+		  			let id = this.getNextMemberId();
+	  				vm.$set(this.tournament.members, id, {
+	  					id: id,
+	  					name: this.getPseudo(this.newMemberName)
+	  				});
+
+	  				this.newMemberName = '';
+
+	  				$('#addMemberModal').modal('hide');
+		  		},
+		  		getNextMemberId: function() {
+		  			let ids = Object.keys(this.tournament.members).map(key => this.tournament.members[key].id);
+		  			ids.push(0);		  			
+		  			return Math.max(...ids) + 1;
+		  		},
+		  		getPseudo: function(name) {
+		  			switch(name.toLowerCase()) {
+					    case "matthias":
+					        return "Mathias";
+					    case "mélanie":
+					        return "Licorne";
+					    case "laris":
+					    	return "Laris Potter";
+					}
+
+					return name;
+		  		}
+		  	}
+		});
+
+		vm.$watch('tournament', newTournament => {
+			console.log('PERSIST', newTournament);
+			localStorage.setItem('tournament', JSON.stringify(newTournament));
+		}, {
+		  deep: true
+		});
+	</script>
+  </body>
+</html>
